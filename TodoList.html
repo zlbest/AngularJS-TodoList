@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>任务列表 - By AngularJS</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .container {
+            max-width: 600px;
+        }
+        .checkbox {
+            margin-bottom: 0px;
+            margin-right: 20px;
+        }
+        .done {
+            color: #ccc;
+        }
+        .done > .checkbox > label > span {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="container" ng-app="TodoApp">
+<header>
+    <h1 class="myTodoList">我的任务列表</h1>
+    <hr />
+</header>
+<section ng-controller="MainController">
+    <form class="input-group input-group-lg">
+        <input type="text" class="form-control" ng-model="textValue" />
+        <span class="input-group-btn">
+                <button class="btn btn-secondary" ng-click="addTask()">添加</button>
+        </span>
+    </form>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="item in todoList" ng-class="{'done':item.done}">
+            <button type="button" class="close" aria-label="Close" ng-click="deleteTask(item)">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="item.done" />
+                    <span>{{item.textValue}}</span>
+                </label>
+            </div>
+        </li>
+    </ul>
+    <p>总共<strong>{{todoList.length}}</strong>个任务，已完成<strong>{{updateDone()}}</strong>个</p>
+</section>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript" src="TodoList.js"></script>
+</body>
+</html>
